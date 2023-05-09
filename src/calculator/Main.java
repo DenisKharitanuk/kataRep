@@ -26,11 +26,11 @@ public class Main {
             try {
                 intArray[i] = Integer.parseInt(stringArray[i].trim());
 
-                if(intArray[i]>10 || intArray[i]<1){
+                if (intArray[i] > 10 || intArray[i] < 1) {
                     try {
-                        throw  new IOException();
-                    }
-                    catch (IOException  ex){
+                        throw new IOException();
+
+                    } catch (IOException ex) {
                         System.out.println(" Ошибка ввода ");
                         System.exit(1);
                     }
@@ -40,19 +40,10 @@ public class Main {
             } catch (NumberFormatException ex) {
 
                 operand = input.charAt(i + 1);
-                if(operand != '+' || operand != '-' || operand != '*' ||operand != '/' ){
-                    try {
-                        throw new IOException();
-
-                    }
-                    catch (IOException e){
-                        System.out.println("Ошибка ввода");
-                        System.exit(1);
-                    }
-                }
-
 
             }
+
+
         }
 
         input = Integer.toString(calculationResult());
@@ -63,31 +54,34 @@ public class Main {
     private static int calculationResult() {
         int result = 0;
 
-        try {
-            switch (operand) {
-                case '+':
-                    result = intArray[0] + intArray[2];
-                    break;
-                case '-':
-                    result = intArray[0] - intArray[2];
-                    break;
-                case '*':
-                    result = intArray[0] * intArray[2];
-                    break;
-                case '/':
-                    result = intArray[0] / intArray[2];
-                    break;
 
-            }
-        } catch (ArithmeticException ex) {
-            result = 0;
+        switch (operand) {
+            case '+':
+                result = intArray[0] + intArray[2];
+                break;
+            case '-':
+                result = intArray[0] - intArray[2];
+                break;
+            case '*':
+                result = intArray[0] * intArray[2];
+                break;
+            case '/':
+                result = intArray[0] / intArray[2];
+                break;
+            default:
+
+                try {
+                    throw new IOException();
+
+                } catch (IOException ex) {
+                    System.out.println("Ошибка ввода");
+                    System.exit(1);
+                }
+
         }
 
+
         return result;
-    }
-
-    public static void main(String[] args) {
-
     }
 
 
