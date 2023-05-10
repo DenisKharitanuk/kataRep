@@ -35,7 +35,7 @@ public class Main {
             try {
                 intArray[i] = Integer.parseInt(stringArray[i].trim());
 
-                if (intArray[i] > 11 || intArray[i] < 1) {
+                if (intArray[i] > 10 || intArray[i] < 1) {
 
                     throw new IOException("Ошибка ввода");
 
@@ -44,7 +44,12 @@ public class Main {
 
             } catch (NumberFormatException ex) {
 
-                operand = input.charAt(i + 1);
+                if (intArray[0] > 9) {
+                    operand = input.charAt(i + 2);
+                } else {
+                    operand = input.charAt(i + 1);
+                }
+
 
             }
 
@@ -55,7 +60,6 @@ public class Main {
 
         return input;
     }
-
 
 
     private static int calculationResult() throws IOException {
