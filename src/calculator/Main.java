@@ -12,28 +12,33 @@ public class Main {
 
 
     public static String consoleInput() {
+
         String input = in.nextLine();
         in.close();
+
         return input;
+
     }
 
 
-    public static String calc(String input) {
+    public static String calc(String input) throws IOException {
 
         String stringArray[] = input.split(" ");
+
+        if (stringArray.length != 3) {
+
+            throw new ArrayIndexOutOfBoundsException("Неверный формат");
+
+        }
 
         for (int i = 0; i < stringArray.length; i++) {
             try {
                 intArray[i] = Integer.parseInt(stringArray[i].trim());
 
-                if (intArray[i] > 10 || intArray[i] < 1) {
-                    try {
-                        throw new IOException();
+                if (intArray[i] > 11 || intArray[i] < 1) {
 
-                    } catch (IOException ex) {
-                        System.out.println(" Ошибка ввода ");
-                        System.exit(1);
-                    }
+                    throw new IOException("Ошибка ввода");
+
 
                 }
 
@@ -51,7 +56,9 @@ public class Main {
         return input;
     }
 
-    private static int calculationResult() {
+
+
+    private static int calculationResult() throws IOException {
         int result = 0;
 
 
@@ -70,20 +77,15 @@ public class Main {
                 break;
             default:
 
-                try {
-                    throw new IOException();
 
-                } catch (IOException ex) {
-                    System.out.println("Ошибка ввода");
-                    System.exit(1);
-                }
+                throw new IOException("Ошибка ввода");
+
 
         }
 
 
         return result;
     }
-
 
 
 }
